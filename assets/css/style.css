@@ -1,0 +1,27 @@
+body {
+    position: relative;
+}
+
+.inline {
+    float: left;
+}
+
+.buttons {
+    margin: 10px;
+    
+}
+#top {
+    margin: 10px;
+}
+.input {
+    float: right;
+    float: top;
+    /* position: absolute; */
+    top: 0;
+    right: 0;
+    color: red;
+}
+
+.gif {
+    margin: 10px;
+}
