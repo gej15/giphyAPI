@@ -1,5 +1,6 @@
 
 let animalArray = ['Deer', 'Bat', 'Panda', 'Goat', 'Salmon']
+let offset = 0
 function buttonMaker() {
         $('#top').empty()
     for (let i = 0; i < animalArray.length; i++) {
@@ -24,8 +25,8 @@ function think() {
     $('#display').empty()
     console.log('go')
     let grab = $(this).attr('data-name')
-    
-    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + grab + "&api_key=SoYDduR6jflenTs3SIV5Jttlxz2mbKZe&limit=3&rating=g&rating=pg"
+    console.log(offset)
+    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + grab + "&api_key=SoYDduR6jflenTs3SIV5Jttlxz2mbKZe&limit=10&rating=g&rating=pg&offset=" + offset
     console.log(queryURL)
     $.ajax({
         url: queryURL,
@@ -42,9 +43,9 @@ function think() {
                 let rating = results[i].rating  
 
                 let p = $('<p>').text('Rating:' + rating)
+                p.attr('class', 'ratingTag')
 
                 let animalImage = $('<img>')
-
                 animalImage.attr({
                     src: results[i].images.fixed_height_still.url, 
                     picStill: results[i].images.fixed_height_still.url, 
@@ -55,7 +56,7 @@ function think() {
 
                 gifDiv.prepend(p)
                 gifDiv.prepend(animalImage)
-
+                offset = offset + 10
                 $('#display').prepend(gifDiv)
 
             }

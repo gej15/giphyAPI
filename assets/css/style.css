@@ -1,17 +1,22 @@
-body {
-    position: relative;
+ body {
+    background: url(../images/background.png) repeat;
+    
 }
 
 .inline {
     float: left;
 }
 
+#top {
+    background: transparent;
+}
 .buttons {
     margin: 10px;
-    
+
 }
-#top {
-    margin: 10px;
+
+.ratingTag{
+    margin-left: 10px;
 }
 .input {
     float: right;
@@ -19,7 +24,7 @@ body {
     /* position: absolute; */
     top: 0;
     right: 0;
-    color: red;
+    
 }
 
 .gif {
