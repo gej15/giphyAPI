@@ -19,7 +19,7 @@ $('#event').on('click', function() {
     buttonMaker()
 })
 
-$(document).on("click", "button", think);
+$(document).on("click", ".buttons", think);
 
 function think() {
     $('#display').empty()
@@ -45,6 +45,16 @@ function think() {
                 let p = $('<p>').text('Rating:' + rating)
                 p.attr('class', 'ratingTag')
 
+                let save = $('<button>').text('save')
+                save.attr({
+                    class: 'save',
+                    src: results[i].images.fixed_height_still.url, 
+                    picStill: results[i].images.fixed_height_still.url, 
+                    picAnimate: results[i].images.fixed_height.url,
+                    picState: 'still',
+                })
+
+
                 let animalImage = $('<img>')
                 animalImage.attr({
                     src: results[i].images.fixed_height_still.url, 
@@ -53,7 +63,7 @@ function think() {
                     picState: 'still',
                     class: "gif",})
                 
-
+                gifDiv.prepend(save)
                 gifDiv.prepend(p)
                 gifDiv.prepend(animalImage)
                 offset = offset + 10
@@ -63,10 +73,57 @@ function think() {
         })
 }
 
+$(document).on('click', '.save', save)
+
+
+function save() {
+    localStorage.clear()
+    let saved = $('<img>')
+    
+    saved.attr({
+        src: $(this).attr('src'),
+        picStill: $(this).attr('picStill'),
+        picAnimate: $(this).attr('picAnimate'),
+        picState: $(this).attr('picState',),
+        class: 'fav',
+    })
+
+    let remove = $('<button>')
+    remove.text('remove')
+    remove.attr({
+        class: 'remove'
+    })
+
+    // console.log({
+    //     src: $(this).attr('src'),
+    //     picStill: $(this).attr('picStill'),
+    //     picAnimate: $(this).attr('picAnimate'),
+    //     picState: $(this).attr('picState',),
+    //     class: 'fav',
+    // })
+
+    list.push({ 
+        src: $(this).attr('src'),
+        picStill: $(this).attr('picStill'),
+        picAnimate: $(this).attr('picAnimate'),
+        picState: $(this).attr('picState',),
+        class: 'fav',
+    })
+
+    $('.saved').html('') 
+
+    localStorage.setItem('favPic', JSON.stringify(list))
+    startList()
+}
+
+
+
 $(document).on('click', '.gif', gifToggle)
+$(document).on('click', '.fav', gifToggle)
 
 function gifToggle(){
     console.log(this)
+    console.log(this.picAnimate)
     let state = $(this).attr('picState')
     console.log("gifpress")
 
@@ -80,4 +137,67 @@ function gifToggle(){
 
 }
 
+let list = JSON.parse(localStorage.getItem('favPic'))
+console.log(list)
+
+
+
+function startList() {
+    list  = JSON.parse(localStorage.getItem('favPic'))
+        if (!Array.isArray(list)) {
+             list = [];
+         }
+    
+    for (let i = 0; i < list.length; i++){
+            console.log('go')
+               
+            let saved = $('<img>')
+            saved.attr({
+                src: list[i].src,
+                picStill: list[i].picStill,
+                picAnimate: list[i].picAnimate,
+                picState: list[i].picState,
+                class: 'fav',
+                number: i,
+            })
+            
+            let remove = $('<button>')
+            remove.text('remove')
+            remove.attr({
+            class: 'remove',
+            number: i,
+            })
+
+            $('.saved').prepend(remove)
+            $('.saved').prepend(saved)    
+    }
+
+$(document).on('click', '.remove', remove)
+        
+    function remove() {
+        localStorage.clear()
+
+        let number = $(this).attr('number')
+        console.log(number)
+
+        list.splice(number, 1)
+
+        console.log(list)
+
+        $('.saved').html('') 
+
+        localStorage.setItem('favPic', JSON.stringify(list))
+
+        startList(list)
+
+        download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
+        
+    }
+    
+
+
+
+}
+
+startList()
 buttonMaker()

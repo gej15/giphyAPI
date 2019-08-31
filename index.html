@@ -13,17 +13,21 @@
     <link rel='stylesheet' href="assets/css/style.css">
 </head>
 <body class="container">
-    
+    <header class='clearfix'>
     <div class='border' id=top></div>
 
-    <container class='input border'>
-        <label for="animal">Add an animal</label>
-        <input type="text" id="animal">
-        <input type="Submit" id="event"></input>
-    </container>
-    
+        <container class='input border clearfix'>
+            <label for="animal">Add an animal</label>
+            <input type="text" id="animal">
+            <input type="Submit" id="event"></input>
+        </container>
+    </header>
+    <div class="clearfix">
+        <h2 class='label' >Favorites</h2>
+    </div>
+    <div class='saved border'></div>
 
-    <div class='inline border' id='display'></div>
+    <div class='border' id='display'></div>
     
     <script src="assets/js/javascript.js"></script>
 </body>

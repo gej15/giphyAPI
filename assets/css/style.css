@@ -1,10 +1,26 @@
  body {
-    background: url(../images/background.png) repeat;
+     background: url(../images/background.png) repeat;
     
 }
 
 .inline {
     float: left;
+}
+
+.label {
+    margin-right: 150px;
+    float: right;
+    text-align: right;
+}
+.saved {
+    float: right;
+    width: 25%;
+    display: block;
+}
+
+#display {
+    float: left;
+    width: 75%;
 }
 
 #top {
@@ -16,17 +32,38 @@
 }
 
 .ratingTag{
+     margin-left: 10px;
+} 
+
+.save {
     margin-left: 10px;
 }
+
 .input {
     float: right;
     float: top;
     /* position: absolute; */
     top: 0;
-    right: 0;
-    
+    right: 0;    
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.fav {
+    margin-bottom: 10px;
+    content: "";
+    clear: both;
+    display: table;
+
+}
 .gif {
     margin: 10px;
+}
+
+.remove {
+    margin-bottom: 10px;
 }
