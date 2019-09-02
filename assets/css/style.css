@@ -33,10 +33,12 @@
 
 .ratingTag{
      margin-left: 10px;
+     float: left;
 } 
 
 .save {
     margin-left: 10px;
+    float: left;
 }
 
 .input {
@@ -62,8 +64,15 @@
 }
 .gif {
     margin: 10px;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .remove {
     margin-bottom: 10px;
+}
+
+.download{
+    margin-left: 10px;
 }

@@ -1,5 +1,5 @@
 
-let animalArray = ['Deer', 'Bat', 'Panda', 'Goat', 'Salmon']
+let animalArray = ['Deer', 'Bat', 'Panda', 'Goat', 'Salmon', 'Husky', 'Australian Shepherd', 'Corgi', 'Dog', 'Corgi Fail',]
 let offset = 0
 function buttonMaker() {
         $('#top').empty()
@@ -42,7 +42,7 @@ function think() {
 
                 let rating = results[i].rating  
 
-                let p = $('<p>').text('Rating:' + rating)
+                let p = $('<p>').text('Rating: ' + rating)
                 p.attr('class', 'ratingTag')
 
                 let save = $('<button>').text('save')
@@ -93,6 +93,8 @@ function save() {
     remove.attr({
         class: 'remove'
     })
+
+
 
     // console.log({
     //     src: $(this).attr('src'),
@@ -168,6 +170,15 @@ function startList() {
             number: i,
             })
 
+            let downloadLink =$('<button>').text('download link')
+            downloadLink.attr({
+                class: 'download',
+                href: list[i].picAnimate,
+                download: 'gif',
+                
+            })
+
+            $('.saved').prepend(downloadLink)
             $('.saved').prepend(remove)
             $('.saved').prepend(saved)    
     }
@@ -189,15 +200,31 @@ $(document).on('click', '.remove', remove)
         localStorage.setItem('favPic', JSON.stringify(list))
 
         startList(list)
-
-        download(new Blob(["hello world"]), "dlTextBlob.txt", "text/plain");
-        
     }
-    
-
-
-
 }
 
+$(document).on('click', '.download', download)
+
+    function download(){
+    //         filename = 'panda.gif'
+    //         img = $(this).attr('href')
+    //         var element = document.createElement('a');
+    //         element.setAttribute('href', img)
+    //         element.setAttribute('download', filename);
+          
+    //         element.style.display = 'none';
+    //         document.body.appendChild(element);
+          
+    //         element.click();
+          
+    //         document.body.removeChild(element);
+        
+    // }
+        var x=new XMLHttpRequest();
+            x.open("GET",  $(this).attr('href'), true);
+            x.responseType = 'blob';
+            x.onload=function(e){download(x.response, "animal.gif", "image/gif" ); }
+            x.send();
+            }
 startList()
 buttonMaker()
