@@ -138,7 +138,7 @@ function gifToggle(){
 
 }
 
-let list = JSON.parse(localStorage.getItem('favPic'))
+let list = []
 console.log(list)
 
 
@@ -181,26 +181,32 @@ function startList() {
             $('.saved').prepend(remove)
             $('.saved').prepend(saved)    
     }
+}
 
 $(document).on('click', '.remove', remove)
         
     function remove() {
-        localStorage.clear()
+        
+        //localStorage.clear()
+
+        list  = JSON.parse(localStorage.getItem('favPic'))
 
         let number = $(this).attr('number')
         console.log(number)
+
+        console.log(list)
 
         list.splice(number, 1)
 
         console.log(list)
 
-        $('.saved').html('') 
-
         localStorage.setItem('favPic', JSON.stringify(list))
+
+        $('.saved').html('') 
 
         startList(list)
     }
-}
+
 
 $(document).on('click', '.download', download)
 
