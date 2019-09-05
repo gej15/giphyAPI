@@ -12,7 +12,6 @@ function buttonMaker() {
     }
 }
 $('#event').on('click', function() {
-    event.preventDefault()
     let newAnimal = $('#animal').val().trim()
     animalArray.push(newAnimal)
     console.log('go')
