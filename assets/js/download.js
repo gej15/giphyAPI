@@ -160,4 +160,3 @@
 		return true;
 	}; /* end download() */
 }));
-// </script>
